@@ -125,7 +125,7 @@ func main() {
 
 	writer := csv.NewWriter(csvFile)
 	defer writer.Flush()
-	writer.Write([]string{"Filename", "Raw Latitude", "Raw Longitude", "Formatted Latitude", "Formatted Longitude", "Reverse Geocode Response"})
+	writer.Write([]string{"Filename", "Raw Latitude", "Raw Longitude", "Reverse Geocode Response"})
 
 	for _, file := range files {
 		filePath := filepath.Join(dirPath, file.Name())
@@ -168,7 +168,7 @@ func main() {
 					lonStr = "-" + lonStr
 				}
 
-				writer.Write([]string{fileInfo.File, rawLatitude, rawLongitude, strconv.FormatFloat(formattedLatitude, 'f', -1, 64), lonStr, apiResponse})
+				writer.Write([]string{fileInfo.File, rawLatitude, rawLongitude, apiResponse})
 			}
 		}
 	}
