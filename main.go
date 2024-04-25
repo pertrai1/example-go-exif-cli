@@ -7,8 +7,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math"
 	"net/http"
-    "net/url"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -40,15 +41,34 @@ func convertDMSToDecimal(dms string, direction string) (float64, error) {
 
 	decimal := degrees + minutes/60 + seconds/3600
 
-	if direction == "S" || direction == "W" {
+	// Debugging: Print original direction and calculated decimal value
+	fmt.Printf("Original direction: %s\n", direction)
+	fmt.Printf("Decimal value before direction adjustment: %f\n", decimal)
+
+	if strings.Contains(strings.ToUpper(direction), "S") || strings.Contains(strings.ToUpper(direction), "W") {
 		decimal = -decimal
 	}
-	return decimal, nil
+
+	// Debugging: Print adjusted decimal value
+	fmt.Printf("Decimal value after direction adjustment: %f\n", decimal)
+
+	return math.Round(decimal*1e6) / 1e6, nil
 }
 
-// Perform reverse geocoding using the provided longitude and latitude
-func reverseGeocode(longitude, latitude float64) (string, error) {
-	// Format the location JSON
+// Determine the sign of the longitude based on Exif metadata
+func determineLongitudeSign(fields map[string]interface{}) int {
+	if dir, ok := fields["GPSLongitudeRef"].(string); ok {
+		fmt.Println("Longitude Direction:", dir) // Debugging output
+		if strings.ToUpper(dir) == "W" {
+			return -1 // West direction implies negative longitude
+		}
+	}
+	return 1 // Default to positive longitude if direction is not explicitly specified
+}
+
+// Perform reverse geocoding using the provided latitude and longitude
+func reverseGeocode(latitude, longitude float64) (string, error) {
+	// Format the location JSON with latitude and longitude
 	locationJSON := fmt.Sprintf(`{"x": %f, "y": %f}`, longitude, latitude)
 
 	// Define the ArcGIS reverse geocode API URL
@@ -131,25 +151,39 @@ func main() {
 					log.Printf("Error converting longitude for %s: %v", fileInfo.File, err)
 					continue
 				}
-				apiResponse, err := reverseGeocode(formattedLongitude, formattedLatitude)
+				lonSign := determineLongitudeSign(fileInfo.Fields)
+
+				// Adjust longitude sign directly
+				formattedLongitude *= float64(lonSign)
+
+				apiResponse, err := reverseGeocode(formattedLatitude, formattedLongitude)
 				if err != nil {
-					log.Printf("Reverse geocoding failed for %s: %v", fileInfo.File, err)
+					log.Printf("Error during reverse geocoding for %s: %v", fileInfo.File, err)
 					continue
 				}
-				writer.Write([]string{file.Name(), rawLatitude, rawLongitude, fmt.Sprintf("%f", formattedLatitude), fmt.Sprintf("%f", formattedLongitude), apiResponse})
+
+				// Create a formatted string for longitude with the negative sign
+				lonStr := strconv.FormatFloat(math.Abs(formattedLongitude), 'f', -1, 64)
+				if lonSign == -1 {
+					lonStr = "-" + lonStr
+				}
+
+				writer.Write([]string{fileInfo.File, rawLatitude, rawLongitude, strconv.FormatFloat(formattedLatitude, 'f', -1, 64), lonStr, apiResponse})
 			}
 		}
 	}
 }
 
-func isSupportedImageFile(fileName string) bool {
-	lowerFileName := strings.ToLower(fileName)
-	return strings.HasSuffix(lowerFileName, ".jpg") || strings.HasSuffix(lowerFileName, ".jpeg") || strings.HasSuffix(lowerFileName, ".tif") || strings.HasSuffix(lowerFileName, ".tiff")
+// Check if the file is a supported image file based on its extension
+func isSupportedImageFile(filename string) bool {
+	ext := strings.ToLower(filepath.Ext(filename))
+	return ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".tiff" || ext == ".bmp"
 }
 
+// Safely retrieve a string value from a map, returning an empty string if the key is not found or the value is not a string
 func safeString(fields map[string]interface{}, key string) string {
-	if val, ok := fields[key]; ok && val != nil {
-		return fmt.Sprint(val)
+	if val, ok := fields[key].(string); ok {
+		return val
 	}
 	return ""
 }
