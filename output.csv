@@ -1,50 +1,84 @@
-Filename,Reverse Geocode Response
-IMG_0487.tiff,"{
+Filename,Raw Latitude,Raw Longitude,Formatted Latitude,Formatted Longitude,Reverse Geocode Response
+IMG_0441.tiff,"39 deg 24' 36.62"" N","83 deg 53' 18.15"" W",39.410172,83.888375,"{
 	""address"": {
-		""Match_addr"": ""Earth"",
-		""LongLabel"": ""Earth"",
-		""ShortLabel"": ""Earth"",
-		""Addr_type"": ""POI"",
-		""Type"": ""Other Land Feature"",
-		""PlaceName"": ""Earth"",
+		""Match_addr"": ""Tazhong Town, Qarqan County, Bayingolin Mongol Autonomous Prefecture, Xinjiang Uyghur Autonomous Region"",
+		""LongLabel"": ""Tazhong Town, Qarqan County, Bayingolin Mongol Autonomous Prefecture, Xinjiang Uyghur Autonomous Region, CHN"",
+		""ShortLabel"": ""Tazhong Town"",
+		""Addr_type"": ""Locality"",
+		""Type"": ""Neighborhood"",
+		""PlaceName"": ""Tazhong Town"",
 		""AddNum"": """",
 		""Address"": """",
 		""Block"": """",
 		""Sector"": """",
-		""Neighborhood"": """",
-		""District"": """",
-		""City"": """",
+		""Neighborhood"": ""Tazhong Town"",
+		""District"": ""Qarqan County"",
+		""City"": ""Bayingolin Mongol Autonomous Prefecture"",
 		""MetroArea"": """",
 		""Subregion"": """",
-		""Region"": """",
-		""RegionAbbr"": """",
+		""Region"": ""Xinjiang Uyghur Autonomous Region"",
+		""RegionAbbr"": ""XJ"",
 		""Territory"": """",
 		""Postal"": """",
 		""PostalExt"": """",
-		""CntryName"": """",
-		""CountryCode"": """",
+		""CntryName"": ""China"",
+		""CountryCode"": ""CHN"",
 		""X"": 0.0,
-		""Y"": 0.0,
-		""InputX"": 0.0,
-		""InputY"": 0.0
+		""Y"": 0.0
 	},
 	""location"": {
-		""x"": 0.0,
-		""y"": 0.0,
+		""x"": 83.888375,
+		""y"": 39.410172,
 		""spatialReference"": {
 			""wkid"": 4326,
 			""latestWkid"": 4326
 		}
 	}
 }"
-IMG_0491.tiff,"{
+IMG_2324.jpeg,"38 deg 39' 58.52"" N","77 deg 47' 23.37"" W",38.666256,77.789825,"{
 	""address"": {
-		""Match_addr"": ""Earth"",
-		""LongLabel"": ""Earth"",
-		""ShortLabel"": ""Earth"",
-		""Addr_type"": ""POI"",
-		""Type"": ""Other Land Feature"",
-		""PlaceName"": ""Earth"",
+		""Match_addr"": ""Makit County, Kashgar Prefecture, Xinjiang Uyghur Autonomous Region"",
+		""LongLabel"": ""Makit County, Kashgar Prefecture, Xinjiang Uyghur Autonomous Region, CHN"",
+		""ShortLabel"": ""Makit County"",
+		""Addr_type"": ""Locality"",
+		""Type"": ""District"",
+		""PlaceName"": ""Makit County"",
+		""AddNum"": """",
+		""Address"": """",
+		""Block"": """",
+		""Sector"": """",
+		""Neighborhood"": """",
+		""District"": ""Makit County"",
+		""City"": ""Kashgar Prefecture"",
+		""MetroArea"": """",
+		""Subregion"": """",
+		""Region"": ""Xinjiang Uyghur Autonomous Region"",
+		""RegionAbbr"": ""XJ"",
+		""Territory"": """",
+		""Postal"": """",
+		""PostalExt"": """",
+		""CntryName"": ""China"",
+		""CountryCode"": ""CHN"",
+		""X"": 0.0,
+		""Y"": 0.0
+	},
+	""location"": {
+		""x"": 77.789825,
+		""y"": 38.666256,
+		""spatialReference"": {
+			""wkid"": 4326,
+			""latestWkid"": 4326
+		}
+	}
+}"
+IMG_9295.tiff,"40 deg 44' 55.07"" N","73 deg 59' 8.78"" W",40.748631,73.985772,"{
+	""address"": {
+		""Match_addr"": ""Ozgon rayonu, Osh Region"",
+		""LongLabel"": ""Ozgon rayonu, Osh Region, KGZ"",
+		""ShortLabel"": ""Ozgon rayonu"",
+		""Addr_type"": ""Locality"",
+		""Type"": ""County"",
+		""PlaceName"": ""Ozgon rayonu"",
 		""AddNum"": """",
 		""Address"": """",
 		""Block"": """",
@@ -53,22 +87,22 @@ IMG_0491.tiff,"{
 		""District"": """",
 		""City"": """",
 		""MetroArea"": """",
-		""Subregion"": """",
-		""Region"": """",
+		""Subregion"": ""Ozgon rayonu"",
+		""Region"": ""Osh Region"",
 		""RegionAbbr"": """",
 		""Territory"": """",
 		""Postal"": """",
 		""PostalExt"": """",
-		""CntryName"": """",
-		""CountryCode"": """",
-		""X"": 0.0,
-		""Y"": 0.0,
-		""InputX"": 0.0,
-		""InputY"": 0.0
+		""CntryName"": ""Kyrgyzstan"",
+		""CountryCode"": ""KGZ"",
+		""X"": 73.985772,
+		""Y"": 40.748631,
+		""InputX"": 73.985772,
+		""InputY"": 40.748631
 	},
 	""location"": {
-		""x"": 0.0,
-		""y"": 0.0,
+		""x"": 73.985772,
+		""y"": 40.748631,
 		""spatialReference"": {
 			""wkid"": 4326,
 			""latestWkid"": 4326
